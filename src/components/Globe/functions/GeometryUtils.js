@@ -9,7 +9,7 @@ export function computeRadius() {
 
 export function createVectorFromLatLon(lat, lon, radius) {
     const phi = (90 - lat) * DEG2RAD;
-    const theta = (lon + 180) * DEG2RAD;
+    const theta = (lon) * DEG2RAD;
     return new THREE.Vector3(
         radius * Math.sin(phi) * Math.cos(theta),
         radius * Math.cos(phi),

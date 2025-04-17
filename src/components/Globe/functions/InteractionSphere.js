@@ -22,6 +22,7 @@ export function setupMouseHandlers({
     interactionSphereRef,
     specialDotsRef,
     normalMeshRef,
+    onDotClick
 }) {
     const onMouseMove = (e) => {
         const { x, y } = getMouseCoordinates(e, canvas);
@@ -79,10 +80,13 @@ export function setupMouseHandlers({
         if (specialDotsRef.current) {
             const intersects = raycaster.current.intersectObject(specialDotsRef.current, true);
             if (intersects.length > 0) {
-                console.log('Dot clicked');
+                const instanceId = intersects[0].instanceId;
+                const data = specialDotsRef.current.userData.specialPoints[instanceId];
+                if (onDotClick) onDotClick(data);
             }
         }
     };
+
     return { onMouseMove, onMouseDown, onMouseUp, onMouseDrag, handleDotClick };
 }
 

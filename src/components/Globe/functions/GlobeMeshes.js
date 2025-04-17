@@ -17,6 +17,8 @@ export function createSpecialDots(radius, specialPoints) {
         mesh.setColorAt(i, new THREE.Color(pt.color));
     });
 
+    mesh.userData.specialPoints = specialPoints;
+
     return mesh;
 }
 
@@ -63,7 +65,6 @@ export const createMainSphere = (radius) => {
             transparent: true,
         })
     );
-    sphere.rotation.y = Math.PI;
     return sphere;
 };
 

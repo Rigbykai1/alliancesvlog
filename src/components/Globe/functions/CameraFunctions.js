@@ -6,7 +6,7 @@ export function setupScene(canvasRef, rendererRef, sceneRef, cameraRef) {
     const canvas = canvasRef.current;
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth - 50, window.innerHeight - 50);
     rendererRef.current = renderer;
 
     const scene = new THREE.Scene();
