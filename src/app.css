@@ -1,0 +1,5 @@
+body {
+  @apply bg-stone-900;
+}
+@import "tailwindcss";
+@plugin "daisyui";
