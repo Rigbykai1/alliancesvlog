@@ -6,6 +6,7 @@ export function addGlobePoints(sceneRef, specialPoints) {
     return new Promise((resolve) => {
         const radius = dotRadius();
         const img = new Image();
+        img.crossOrigin = 'anonymous';
         img.src = ghUrl('/src/Images/wmap.png');
         img.onload = () => {
             const { data, width, height } = extractImageData(img);
