@@ -6,10 +6,13 @@ import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import ContactButton from "../../components/Buttons/ContactButton";
 import PageButton from "./Buttons/PageButton";
 import TabButton from "./Buttons/TabButton";
+import ContactModal from "../../components/Buttons/ContactModal";
+import ContactModalContent from "../../components/Buttons/ContactModalContent";
 
 const AboutMe = () => {
     const [activeTab, setActiveTab] = useState("laboral");
     const [page, setPage] = useState(0);
+    const [contactOpen, setContactOpen] = useState(false);
 
     const data = activeTab === "laboral" ? WORK_HISTORY : STUDY_HISTORY;
     const itemsPerPage = 1;
@@ -64,7 +67,12 @@ const AboutMe = () => {
             </div>
             <div className="flex flex-col gap-4 pb-4">
                 <p className="font-extralight text-lg text-emerald-300/80 max-w-md">¿Interesado en trabajar conmigo?</p>
-                <ContactButton />
+                <ContactButton onOpen={() => setContactOpen(true)} />
+                <ContactModal
+                    open={contactOpen}
+                    onClose={() => setContactOpen(false)}
+                    modalContent={<ContactModalContent />}
+                />
             </div>
         </div>
     );
