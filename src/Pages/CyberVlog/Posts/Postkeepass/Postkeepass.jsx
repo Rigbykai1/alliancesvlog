@@ -1,3 +1,5 @@
+import ghUrl from "../../../../components/Utils/ghrul";
+
 export default function PostKeepass({ post }) {
   return (
     <>
