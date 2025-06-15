@@ -1,21 +1,11 @@
 import { ROTATION_SENSITIVITY, MAX_TILT } from '../Constants/GlobeSettings';
 import * as THREE from 'three';
 
-const getCoordinates = (event, canvas) => {
+const getMouseCoordinates = (event, canvas) => {
     const rect = canvas.getBoundingClientRect();
-    let clientX, clientY;
-
-    if (event.touches && event.touches.length > 0) {
-        clientX = event.touches[0].clientX;
-        clientY = event.touches[0].clientY;
-    } else {
-        clientX = event.clientX;
-        clientY = event.clientY;
-    }
-
     return {
-        x: ((clientX - rect.left) / rect.width) * 2 - 1,
-        y: -((clientY - rect.top) / rect.height) * 2 + 1
+        x: ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        y: -((event.clientY - rect.top) / rect.height) * 2 + 1
     };
 };
 
@@ -34,9 +24,8 @@ export function setupMouseHandlers({
     normalMeshRef,
     onDotClick
 }) {
-    const onMove = (e) => {
-        if (e.type === 'touchmove') e.preventDefault();
-        const { x, y } = getCoordinates(e, canvas);
+    const onMouseMove = (e) => {
+        const { x, y } = getMouseCoordinates(e, canvas);
         mouse.current.x = x;
         mouse.current.y = y;
 
@@ -51,18 +40,14 @@ export function setupMouseHandlers({
         }
     };
 
-    const onDown = (e) => {
-        if (e.type === 'touchstart') e.preventDefault();
-        const { x, y } = getCoordinates(e, canvas);
+    const onMouseDown = (e) => {
+        const { x, y } = getMouseCoordinates(e, canvas);
         raycaster.current.setFromCamera(new THREE.Vector2(x, y), cameraRef.current);
         const intersects = raycaster.current.intersectObject(interactionSphereRef.current);
 
         if (intersects.length > 0) {
             isDragging.current = true;
-            lastMouse.current = {
-                x: e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX,
-                y: e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY
-            };
+            lastMouse.current = { x: e.clientX, y: e.clientY };
             baseRotation.current = {
                 x: sceneRef.current.rotation.x,
                 y: sceneRef.current.rotation.y
@@ -70,17 +55,14 @@ export function setupMouseHandlers({
         }
     };
 
-    const onUp = () => {
+    const onMouseUp = () => {
         isDragging.current = false;
     };
 
-    const onDrag = (e) => {
+    const onMouseDrag = (e) => {
         if (isDragging.current) {
-            const currentClientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
-            const currentClientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
-
-            const deltaX = currentClientX - lastMouse.current.x;
-            const deltaY = currentClientY - lastMouse.current.y;
+            const deltaX = e.clientX - lastMouse.current.x;
+            const deltaY = e.clientY - lastMouse.current.y;
 
             const targetX = baseRotation.current.x + deltaY * ROTATION_SENSITIVITY;
             sceneRef.current.rotation.x = THREE.MathUtils.clamp(
@@ -90,68 +72,43 @@ export function setupMouseHandlers({
             );
 
             sceneRef.current.rotation.y = baseRotation.current.y + deltaX * ROTATION_SENSITIVITY;
-
-            lastMouse.current = { x: currentClientX, y: currentClientY };
         }
     };
 
-    const handleClick = () => {
+    const handleDotClick = () => {
         raycaster.current.setFromCamera(mouse.current, cameraRef.current);
         if (specialDotsRef.current) {
             const intersects = raycaster.current.intersectObject(specialDotsRef.current, true);
             if (intersects.length > 0) {
                 const instanceId = intersects[0].instanceId;
                 const data = specialDotsRef.current.userData.specialPoints[instanceId];
-                // Validar que data exista antes de llamar a onDotClick
-                if (data && onDotClick) {
+                if (data && Object.keys(data).length > 0 && onDotClick) {
                     onDotClick(data);
                 }
             }
         }
     };
 
-    return { onMove, onDown, onUp, onDrag, handleClick };
+    return { onMouseMove, onMouseDown, onMouseUp, onMouseDrag, handleDotClick };
 }
 
 export const setupEventListeners = (canvas, handlers) => {
-    const { onMove, onDown, onUp, onDrag, handleClick } = handlers;
+    const { onMouseMove, onMouseDown, onMouseUp, onMouseDrag, handleDotClick } = handlers;
 
     const addListeners = () => {
-        // Mouse events
-        canvas.addEventListener('mousemove', onMove);
-        canvas.addEventListener('mousedown', onDown);
-        canvas.addEventListener('mouseup', onUp);
-        canvas.addEventListener('mousemove', onDrag);
-        canvas.addEventListener('click', handleClick);
-
-        // Touch events
-        canvas.addEventListener('touchmove', onMove, { passive: false });
-        canvas.addEventListener('touchstart', onDown, { passive: false });
-        canvas.addEventListener('touchend', onUp);
-        canvas.addEventListener('touchmove', onDrag, { passive: false });
-        // Simular click en touchend si no fue drag
-        canvas.addEventListener('touchend', (e) => {
-            if (!handlers.isDragging || !handlers.isDragging.current) {
-                handleClick();
-            }
-        });
+        canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('mousedown', onMouseDown);
+        canvas.addEventListener('mouseup', onMouseUp);
+        canvas.addEventListener('mousemove', onMouseDrag);
+        canvas.addEventListener('click', handleDotClick);
     };
 
     const removeListeners = () => {
-        // Mouse events
-        canvas.removeEventListener('mousemove', onMove);
-        canvas.removeEventListener('mousedown', onDown);
-        canvas.removeEventListener('mouseup', onUp);
-        canvas.removeEventListener('mousemove', onDrag);
-        canvas.removeEventListener('click', handleClick);
-
-        // Touch events
-        canvas.removeEventListener('touchmove', onMove);
-        canvas.removeEventListener('touchstart', onDown);
-        canvas.removeEventListener('touchend', onUp);
-        canvas.removeEventListener('touchmove', onDrag);
-        // No es necesario remover el touchend extra porque es una función anónima,
-        // pero si quieres puedes guardar la referencia y removerla igual.
+        canvas.removeEventListener('mousemove', onMouseMove);
+        canvas.removeEventListener('mousedown', onMouseDown);
+        canvas.removeEventListener('mouseup', onMouseUp);
+        canvas.removeEventListener('mousemove', onMouseDrag);
+        canvas.removeEventListener('click', handleDotClick);
     };
 
     return { addListeners, removeListeners };
