@@ -1,11 +1,12 @@
 import { dotRadius } from './GeometryUtils';
 import { createInstancedDots, createSpecialDots } from './GlobeMeshes';
+import ghUrl from '../../Utils/ghrul'
 
 export function addGlobePoints(sceneRef, specialPoints) {
     return new Promise((resolve) => {
         const radius = dotRadius();
         const img = new Image();
-        img.src = '/src/Images/wmap.png';
+        img.src = `${ghUrl}/src/Images/wmap.png`;
         img.onload = () => {
             const { data, width, height } = extractImageData(img);
             const normalMesh = createInstancedDots(data, width, height, radius, 0.3, 0.2);

@@ -6,6 +6,7 @@ import AboutMe from './Pages/AboutMe/AboutMe'
 import NavBar from './components/NavBar'
 import Home from './Pages/Home/Home'
 import './app.css'
+import ghUrl from './components/Utils/ghrul'
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content pb-4">
           <aside>
             <img
-              src="/src/Images/Logo.png"
+              src={`${ghUrl}/src/Images/Logo.png`}
               alt="Logo de Alliances tech"
               className="size-24 grayscale"
             />
