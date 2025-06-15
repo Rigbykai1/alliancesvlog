@@ -7,7 +7,7 @@ const ContactModalContent = () => {
                 <a href="https://www.facebook.com/profile.php?id=61562523632945" target="_blank" rel="noopener noreferrer" className="btn btn-dash btn-info hover:bg-[#1A77F2] hover:text-white hover:border-[#005fd8]">Facebook</a>
                 <a href="https://www.instagram.com/alliancestech/" target="_blank" rel="noopener noreferrer" className="btn btn-dash btn-primary hover:bg-[#622069] hover:text-white hover:border-[#591660]">Instagram</a>
                 <a href="https://www.tiktok.com/@alliancestech" target="_blank" rel="noopener noreferrer" className="btn btn-dash hover:bg-black hover:text-white hover:border-black">TikTok</a>
-                <a href="mailto:rigbykai1@gmail.com" className="btn btn-dash hover:bg-white hover:text-black hover:border-[#e5e5e5]">Email</a>
+                <a href="mailto:rigbykai1@gmail.com" target="_blank" className="btn btn-dash hover:bg-white hover:text-black hover:border-[#e5e5e5]">Email</a>
             </div>
         </div>
     )
