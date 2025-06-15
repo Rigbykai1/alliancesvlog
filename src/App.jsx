@@ -23,7 +23,7 @@ function App() {
         <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content pb-4">
           <aside>
             <img
-              src={ghUrl('/src/Images/Logo.png')}
+              src={ghUrl('/src/Images/Logo.PNG')}
               alt="Logo de Alliances tech"
               className="size-24 grayscale"
             />
