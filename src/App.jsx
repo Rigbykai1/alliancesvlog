@@ -19,13 +19,17 @@ function App() {
           <Route path="/CyberVlog" element={<CyberVlog />} />
           <Route path="/CyberVlog/:id" element={<PostDetail />} />
         </Routes>
-        <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content p-10">
+        <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content pb-4">
           <aside>
-    
+            <img
+              src="/src/Images/Logo.png"
+              alt="Logo de Alliances tech"
+              className="size-24 grayscale"
+            />
             <p className="font-bold">
-              Alliances tech.
+              Alliances tech
               <br />
-              Mejorando un 1% cada día.
+              Mejorando un 1% cada día
             </p>
             <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
           </aside>
