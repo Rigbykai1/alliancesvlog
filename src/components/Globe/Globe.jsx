@@ -58,7 +58,7 @@ export default function Globe({ mainSphereColor, interactionSphereColor, dotsDat
 
     sceneRef.current.add(globeGroup);
 
-    const { onMouseMove, onMouseDown, onMouseUp, onMouseDrag, handleDotClick } = setupMouseHandlers({
+    const { onMove, onDown, onUp, onDrag, handleClick } = setupMouseHandlers({
 
       canvas,
       mouse,
@@ -84,15 +84,16 @@ export default function Globe({ mainSphereColor, interactionSphereColor, dotsDat
       }
     });
 
-    const { addListeners, removeListeners } = setupEventListeners(canvas, {
-
-      onMouseMove,
-      onMouseDown,
-      onMouseUp,
-      onMouseDrag,
-      handleDotClick
-
-    });
+    // Pasa isDragging en el objeto handlers
+    const handlers = {
+      onMove,
+      onDown,
+      onUp,
+      onDrag,
+      handleClick,
+      isDragging
+    };
+    const { addListeners, removeListeners } = setupEventListeners(canvas, handlers);
 
     addListeners();
 
