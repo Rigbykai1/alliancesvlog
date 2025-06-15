@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const GlobeModalContent = ({ dotData }) => {
     const [imgLoaded, setImgLoaded] = useState(false);
-    const screenshotUrl = ``;
+    const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(dotData.link)}&screenshot=true&meta=false&embed=screenshot.url`;
 
     return (
         <>
