@@ -20,7 +20,7 @@ function App() {
           <Route path="/CyberVlog" element={<CyberVlog />} />
           <Route path="/CyberVlog/:id" element={<PostDetail />} />
         </Routes>
-        <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content pb-4">
+        <footer className="footer footer-horizontal footer-center bg-stone-800 text-primary-content p-4">
           <aside>
             <img
               src={ghUrl('/src/Images/Logo.PNG')}
