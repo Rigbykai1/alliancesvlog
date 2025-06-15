@@ -2,16 +2,14 @@ import { setupMouseHandlers, setupEventListeners } from './functions/Interaction
 import { createMainSphere, createInteractionSphere } from './functions/GlobeMeshes';
 import { AUTO_ROTATION_SPEED } from './Constants/GlobeSettings';
 import { addGlobePoints } from './functions/GlobeFunctions';
-import { SPECIAL_POINTS } from './Constants/SpecialPoints';
-import { computeRadius } from './functions/GeometryUtils';
+import { dotRadius } from './functions/GeometryUtils';
 import { setupScene } from './functions/CameraFunctions';
-import DotsModal from './GlobeModal';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { animate } from './functions/Animation';
 import * as THREE from 'three';
-import SpecialDotsContent from './SpecialDotsContent';
 
-export default function Globe() {
+export default function Globe({ mainSphereColor, interactionSphereColor, dotsData, onDotClick, zoomOutTrigger, setZoomOutTrigger }) {
+
   const canvasRef = useRef();
   const rendererRef = useRef();
   const sceneRef = useRef();
@@ -26,27 +24,33 @@ export default function Globe() {
   const isDragging = useRef(false);
   const isHovering = useRef(false);
   const lastMouse = useRef({ x: 0, y: 0 });
-  const [dotData, setDotData] = useState(null);
-
   const originalCameraPosition = useRef(new THREE.Vector3());
   const isAnimating = useRef(false);
   const targetZoom = useRef(1);
 
   useEffect(() => {
+    if (zoomOutTrigger) {
+      targetZoom.current = 1;
+      isAnimating.current = true;
+      setZoomOutTrigger(!zoomOutTrigger);
+    }
+  }, [zoomOutTrigger]);
+
+  useEffect(() => {
     setupScene(canvasRef, rendererRef, sceneRef, cameraRef);
-    const radius = computeRadius();
+    const radius = dotRadius();
     const canvas = canvasRef.current;
 
     const globeGroup = new THREE.Group();
     globeGroupRef.current = globeGroup;
 
-    const mainSphere = createMainSphere(radius);
+    const mainSphere = createMainSphere(radius, mainSphereColor);
     globeGroup.add(mainSphere);
 
-    interactionSphereRef.current = createInteractionSphere(radius);
+    interactionSphereRef.current = createInteractionSphere(radius, interactionSphereColor);
     globeGroup.add(interactionSphereRef.current);
 
-    addGlobePoints(sceneRef, SPECIAL_POINTS).then(({ normalMesh, specialMesh }) => {
+    addGlobePoints(sceneRef, dotsData).then(({ normalMesh, specialMesh }) => {
       normalMeshRef.current = normalMesh;
       specialDotsRef.current = specialMesh;
       globeGroup.add(normalMesh, specialMesh);
@@ -55,6 +59,7 @@ export default function Globe() {
     sceneRef.current.add(globeGroup);
 
     const { onMouseMove, onMouseDown, onMouseUp, onMouseDrag, handleDotClick } = setupMouseHandlers({
+
       canvas,
       mouse,
       raycaster,
@@ -67,22 +72,26 @@ export default function Globe() {
       interactionSphereRef,
       specialDotsRef,
       normalMeshRef,
+
       onDotClick: (dot) => {
         originalCameraPosition.current.copy(cameraRef.current.position);
 
         targetZoom.current = 0.5;
 
         isAnimating.current = true;
-        setDotData(dot);
+        if (onDotClick) onDotClick(dot);
+
       }
     });
 
     const { addListeners, removeListeners } = setupEventListeners(canvas, {
+
       onMouseMove,
       onMouseDown,
       onMouseUp,
       onMouseDrag,
       handleDotClick
+
     });
 
     addListeners();
@@ -95,20 +104,7 @@ export default function Globe() {
     };
   }, []);
 
-  const handleCloseModal = () => {
-    targetZoom.current = 1;
-    isAnimating.current = true;
-    setDotData(null);
-  };
-
   return (
-    <>
-      <canvas ref={canvasRef} />
-      <DotsModal
-        open={!!dotData}
-        onClose={handleCloseModal}
-        modalContent={<SpecialDotsContent dot={dotData} />}
-      />
-    </>
+    <canvas ref={canvasRef} className='self-center w-full animate-fade-up animate-duration-1000 animate-ease-linear' />
   );
 }

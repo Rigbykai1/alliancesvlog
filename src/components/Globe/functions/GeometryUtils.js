@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { DEG2RAD } from '../Constants/GlobeSettings';
 
-export function computeRadius() {
+export function dotRadius() {
     const w = window.innerWidth;
     const h = window.innerHeight;
     return Math.min(w, h) * (w < 678 ? 0.25 : 0.40);

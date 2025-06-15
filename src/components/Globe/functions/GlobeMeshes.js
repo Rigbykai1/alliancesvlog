@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createVectorFromLatLon } from './GeometryUtils';
 
 export function createSpecialDots(radius, specialPoints) {
-    const geo = new THREE.BoxGeometry(3, 3, 3);
+    const geo = new THREE.BoxGeometry(4, 4, 4);
     const mat = new THREE.MeshLambertMaterial({ transparent: true, opacity: 0.5, emissive: 0x404040, emissiveIntensity: 0.4 });
     const mesh = new THREE.InstancedMesh(geo, mat, specialPoints.length);
 
@@ -54,11 +54,11 @@ export function createInstancedDots(imgData, imgW, imgH, radius, scaleFactor, em
     return mesh;
 }
 
-export const createMainSphere = (radius) => {
+export const createMainSphere = (radius, color) => {
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(radius * 0.8, 64, 64),
         new THREE.MeshStandardMaterial({
-            color: 0xA4F76B,
+            color: color,
             roughness: 1,
             metalness: 0.5,
             opacity: 0.5,
@@ -68,11 +68,11 @@ export const createMainSphere = (radius) => {
     return sphere;
 };
 
-export const createInteractionSphere = (radius) => {
+export const createInteractionSphere = (radius, color) => {
     return new THREE.Mesh(
         new THREE.SphereGeometry(radius, 64, 64),
         new THREE.MeshBasicMaterial({
-            color: 0x6FF749,
+            color: color,
             opacity: 0.1,
             transparent: true
         })

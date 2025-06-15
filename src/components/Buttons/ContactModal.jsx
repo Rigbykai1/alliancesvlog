@@ -1,4 +1,4 @@
-const GlobeModal = ({ open, onClose, modalContent }) => {
+const ContactModal = ({ open, onClose, modalContent }) => {
     if (!open) return null;
 
     return (
@@ -18,4 +18,4 @@ const GlobeModal = ({ open, onClose, modalContent }) => {
     );
 };
 
-export default GlobeModal;
+export default ContactModal;

@@ -1,9 +1,9 @@
-import { computeRadius } from './GeometryUtils';
+import { dotRadius } from './GeometryUtils';
 import { createInstancedDots, createSpecialDots } from './GlobeMeshes';
 
 export function addGlobePoints(sceneRef, specialPoints) {
     return new Promise((resolve) => {
-        const radius = computeRadius();
+        const radius = dotRadius();
         const img = new Image();
         img.src = '/src/wmap.png';
         img.onload = () => {

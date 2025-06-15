@@ -1,4 +1,4 @@
-import { computeRadius } from './GeometryUtils';
+import { dotRadius } from './GeometryUtils';
 import * as THREE from 'three';
 
 
@@ -20,6 +20,6 @@ export function setupScene(canvasRef, rendererRef, sceneRef, cameraRef) {
         0.1,
         1000
     );
-    camera.position.set(0, 0, computeRadius() * (window.innerWidth < 678 ? 5 : 3.5));
+    camera.position.set(0, 0, dotRadius() * (window.innerWidth < 678 ? 5 : 3.5));
     cameraRef.current = camera;
 }
