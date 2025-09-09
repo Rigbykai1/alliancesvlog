@@ -1,5 +1,3 @@
-import ContactButton from "../../../../components/Buttons/ContactButton"
-
 export default function PostAfterburner({ post }) {
     return (
         <>
@@ -75,7 +73,6 @@ export default function PostAfterburner({ post }) {
                     Si tienes dudas o comentarios, contáctame en redes sociales. ¡Gracias por leer!
                 </p>
             </div>
-            <ContactButton />
         </>
     );
 }

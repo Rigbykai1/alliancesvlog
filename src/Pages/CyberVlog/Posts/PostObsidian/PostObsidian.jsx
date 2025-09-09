@@ -89,7 +89,6 @@ export default function PostObsidian({ post }) {
                     Si buscas centralizar ideas, proyectos y referencias en un solo lugar, Obsidian puede ser la herramienta definitiva para tu flujo de trabajo.
                 </p>
             </div>
-            <ContactButton />
         </>
     );
 }

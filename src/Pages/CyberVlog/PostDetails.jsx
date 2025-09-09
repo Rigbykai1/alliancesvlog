@@ -16,7 +16,7 @@ const postComponents = {
 
 export default function PostDetail() {
     const { id } = useParams();
-    const post = VIDEO_POSTS.find(p => p.id === Number(id));
+    const post = VIDEO_POSTS.find(p => p.slug === id);
     if (!post) return <PostError />;
 
     const CustomComponent = post.component ? postComponents[post.component] : null;

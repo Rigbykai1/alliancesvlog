@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import ContactButton from "../../../../components/Buttons/ContactButton"
 
 export default function PostSyncthing({ post }) {
   return (
@@ -83,7 +82,6 @@ export default function PostSyncthing({ post }) {
         </p>
       </div>
 
-      <ContactButton />
     </>
   );
 }

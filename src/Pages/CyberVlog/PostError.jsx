@@ -1,6 +1,6 @@
 const PostError = () => {
     return (
-        <div className="flex flex-col p-8 gap-4 justify-center items-center bg-stone-800 w-fit self-center rounded-lg mx-4">
+        <div className="flex flex-col p-8 gap-4 justify-center items-center bg-stone-800 w-fit self-center rounded-lg mx-4 my-4">
             <h1 className="text-3xl font-bold mb-4 text-center">Post no encontrado</h1>
             <p className="mb-4 text-center">Parece que hubo un <span className="text-error font-bold">error</span>, intenta las siguientes soluciones:</p>
             <ul className="list">

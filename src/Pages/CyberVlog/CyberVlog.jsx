@@ -51,7 +51,7 @@ export default function CyberVlog() {
         {VIDEO_POSTS.map((post, index) => (
           <Link
             key={post.id}
-            to={`/CyberVlog/${post.id}`}
+            to={`/CyberVlog/${post.slug}`}
             className="no-underline"
           >
             <div
