@@ -1,87 +1,66 @@
 import { Link } from "react-router";
+import PostsButtons from "../../../../components/Buttons/PostsButtons";
+
+const features = [
+  { icon: "🔒", title: "Sin servidores externos", text: "Tus archivos se sincronizan directamente entre tus dispositivos." },
+  { icon: "⚡", title: "Sincronización en tiempo real", text: "Los cambios se reflejan al instante entre todos los equipos conectados." },
+  { icon: "🛡️", title: "Cifrado TLS", text: "Todos los datos viajan de manera cifrada y segura." },
+  { icon: "🌐", title: "Multiplataforma", text: "Funciona en Windows, macOS, Linux, Android y otros sistemas." },
+  { icon: "🔧", title: "Configuración flexible", text: "Define qué carpetas sincronizar y cómo hacerlo (solo enviar, solo recibir)." },
+  { icon: "💾", title: "Uso personal o profesional", text: "Ideal para archivos críticos, bases de datos o proyectos colaborativos." }
+];
+
+function FeatureCard({ icon, title, text }) {
+  return (
+    <div className="bg-stone-700/50 rounded-xl p-5 text-center shadow hover:scale-105 transition-transform">
+      <div className="text-4xl mb-2">{icon}</div>
+      <h3 className="text-lg font-bold mb-1">{title}</h3>
+      <p className="text-sm text-gray-400">{text}</p>
+    </div>
+  );
+}
 
 export default function PostSyncthing({ post }) {
   return (
-    <>
-      <div className="flex flex-col gap-4 justify-center items-center">
-        <h1 className="text-3xl font-bold mb-4 text-center">{post.title}</h1>
-        <p className="mb-4 text-center">
-          Muchas personas dependen de servicios en la nube como Google Drive o Dropbox para sincronizar sus archivos entre dispositivos.
-          Pero <span className="font-bold">¿qué pasa si buscas una alternativa  privada, sin depender de servidores de terceros? </span>
-          En este post te presento <span className="font-bold">Syncthing</span>, una herramienta gratuita y de código abierto que te permite sincronizar archivos de forma directa entre tus dispositivos, de manera segura y cifrada.
-        </p>
-      </div>
+    <div className="flex flex-col gap-10 justify-center items-center px-6 py-10">
 
-      <div>
-        <h2 className="text-3xl font-bold mb-4 text-start">Paso 1: Descarga Syncthing</h2>
-        <p className="mb-4 text-start">
-          Puedes descargar Syncthing desde su página oficial:{" "}
-          <a
-            href="https://syncthing.net/downloads/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-300"
-          >
-            https://syncthing.net/downloads/
-          </a>. Está disponible para Windows, Linux, macOS, Android y otros sistemas.
+      <section className="text-center max-w-2xl">
+        <h1 className="text-4xl font-extrabold mb-4">{post.title}</h1>
+        <p className="text-lg text-gray-300 mb-6">
+          🔄 Sincroniza tus archivos de manera privada, directa y segura con Syncthing, sin depender de la nube.
         </p>
+      </section>
 
-        <h2 className="text-3xl font-bold mb-4 text-start">Paso 2: Instalación</h2>
-        <p className="mb-4 text-start">
-          Instala Syncthing en todos los dispositivos entre los cuales quieres compartir archivos.
-          En Windows, puedes usar el instalador del siguiente repositorio mantenido por la comunidad:{" "}
-          <a
-            href="https://github.com/Bill-Stewart/SyncthingWindowsSetup/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-300"
-          >
-            SyncthingWindowsSetup
-          </a>.
+      <section className="bg-stone-700/50 rounded-2xl p-6 max-w-3xl shadow-lg text-center">
+        <h2 className="text-2xl font-bold mb-3">¿Por qué usar Syncthing?</h2>
+        <p className="text-gray-300">
+          Syncthing ofrece sincronización directa entre tus dispositivos sin depender de servidores de terceros. Todo viaja cifrado y en tiempo real, dándote control total sobre tus datos personales o profesionales.
         </p>
+      </section>
 
-        <h2 className="text-3xl font-bold mb-4 text-start">Paso 3: Primer arranque y configuración</h2>
-        <p className="mb-4 text-start">
-          Al ejecutar Syncthing por primera vez, se abrirá una interfaz web en tu navegador. Desde ahí puedes:
-          <ul className="list-disc list-inside">
-            <li>Configurar carpetas para sincronizar</li>
-            <li>Ver el ID del dispositivo (clave única que necesitarás para enlazar otros dispositivos)</li>
-            <li>Ajustar opciones como el nombre del dispositivo y puertos</li>
-          </ul>
+      <section className="text-center">
+        <h2 className="text-2xl font-bold mb-6">📖 Características clave</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
+          {features.map((f, i) => (
+            <FeatureCard key={i} {...f} />
+          ))}
+        </div>
+      </section>
+      <section className="bg-stone-700/50 rounded-2xl p-6 max-w-3xl shadow-lg text-center">
+        <h2 className="text-2xl font-bold mb-3">💡 Uso personal: sincronización de contraseñas</h2>
+        <p className="text-gray-300">
+          Yo utilizo Syncthing para mantener sincronizada mi base de datos de <Link to="/CyberVlog/keepass" className="text-green-300">KeePassXC</Link> entre todos mis dispositivos, asegurando que siempre esté actualizada y protegida sin depender de servicios en la nube.
         </p>
+      </section>
+      <PostsButtons videoUrl={post.videoUrl} oficialSite={'https://syncthing.net/downloads/'} />
 
-        <h2 className="text-3xl font-bold mb-4 text-start">Paso 4: Conectar dispositivos</h2>
-        <p className="mb-4 text-start">
-          Para sincronizar entre dos dispositivos, necesitas agregar el ID del otro dispositivo en la interfaz de Syncthing.
-          Ambos dispositivos deben aceptar el enlace para que se establezca la conexión segura.
-          Una vez conectados, puedes elegir qué carpetas sincronizar con qué dispositivo.
+      <section className="text-center max-w-xl mt-6">
+        <h2 className="text-2xl font-bold mb-3">🙌 ¡Gracias por leer!</h2>
+        <p className="text-gray-300 mb-4">
+          Syncthing te permite tener control total sobre tus archivos y mantenerlos sincronizados de manera privada y segura. Empieza a usarlo hoy y protege tus datos.
         </p>
+      </section>
 
-        <h2 className="text-3xl font-bold mb-4 text-start">Paso 5: Sincronización automática y cifrada</h2>
-        <p className="mb-4 text-start">
-          Syncthing sincroniza los archivos en tiempo real y de manera cifrada (TLS). No se usan servidores externos: **la transferencia es directa entre tus dispositivos**.
-          Además, puedes definir reglas como “solo enviar” o “solo recibir” para controlar cómo se sincronizan los datos.
-        </p>
-
-        <h2 className="text-3xl font-bold mb-4 text-start">Uso personal: sincronización de contraseñas</h2>
-        <p className="mb-4 text-start">
-          En mi caso, uso Syncthing para sincronizar archivos críticos como mi base de datos de contraseñas de{" "}
-          <Link
-            to="/cybervlog/1"
-            className="text-green-300"
-          >
-            KeePassXC
-          </Link> entre varios dispositivos.
-          Así, mantengo mi información segura y siempre actualizada sin depender de la nube.
-        </p>
-
-        <h2 className="text-3xl font-bold mb-4 text-start">Gracias!</h2>
-        <p className="mb-4 text-start">
-          Espero que esta guía te haya servido para entender qué es Syncthing y cómo puede ayudarte a tener más control sobre tus datos.
-          Si tenés dudas, comentarios o sugerencias, escribime a través de mis redes. ¡Gracias por leer!
-        </p>
-      </div>
-
-    </>
+    </div>
   );
 }
