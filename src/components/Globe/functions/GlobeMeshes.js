@@ -3,7 +3,7 @@ import { createVectorFromLatLon } from './GeometryUtils';
 
 export function createSpecialDots(radius, specialPoints) {
     const geo = new THREE.BoxGeometry(4, 4, 4);
-    const mat = new THREE.MeshLambertMaterial({ transparent: true, opacity: 0.5, emissive: 0x404040, emissiveIntensity: 0.4 });
+    const mat = new THREE.MeshLambertMaterial({ transparent: false, opacity: 0.8, emissive: 0x404040, emissiveIntensity: 1 });
     const mesh = new THREE.InstancedMesh(geo, mat, specialPoints.length);
 
     specialPoints.forEach((pt, i) => {
@@ -39,7 +39,7 @@ export function createInstancedDots(imgData, imgW, imgH, radius, scaleFactor, em
     }
 
     const geo = new THREE.BoxGeometry(5 * scaleFactor, 5 * scaleFactor, 5 * scaleFactor);
-    const mat = new THREE.MeshLambertMaterial({ color: 0xFFD700, emissive: 0x404040, emissiveIntensity });
+    const mat = new THREE.MeshLambertMaterial({ color: 0xffff, emissive: 0x404040, emissiveIntensity });
     const mesh = new THREE.InstancedMesh(geo, mat, positions.length);
 
     positions.forEach((pos, i) => {
@@ -61,7 +61,7 @@ export const createMainSphere = (radius, color) => {
             color: color,
             roughness: 1,
             metalness: 0.5,
-            opacity: 0.5,
+            opacity: 1,
             transparent: true,
         })
     );
@@ -73,7 +73,7 @@ export const createInteractionSphere = (radius, color) => {
         new THREE.SphereGeometry(radius, 64, 64),
         new THREE.MeshBasicMaterial({
             color: color,
-            opacity: 0.1,
+            opacity: 0.3,
             transparent: true
         })
     );

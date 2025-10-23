@@ -10,7 +10,7 @@ const navLinks = [
 const NavBar = () => {
     return (
         <nav className="self-center py-4 animate-fade animate-duration-200 animate-ease-linear" aria-label="Main navigation">
-            <ul className="menu menu-horizontal rounded-box bg-stone-800 gap-1 outline rounded-full">
+            <ul className="menu menu-horizontal rounded-box bg-base-300/50 gap-1 outline rounded-full">
                 {navLinks.map((link) => (
                     <li key={link.label}>
                         <Link

@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import Globe from '../../components/Globe/Globe'
-import { SPECIAL_POINTS_HOME } from './SPECIAL_POINTS_HOME'
-import GlobeModal from '../../components/Globe/GlobeModal';
-import ContactButton from '../../components/Buttons/ContactButton';
-import ContactModalContent from '../../components/Buttons/ContactModalContent';
-import ContactModal from '../../components/Buttons/ContactModal';
-import GlobeModalContent from '../../components/Globe/GlobeModalContent';
+import { useState } from "react";
+import Globe from "../../components/Globe/Globe";
+import { SPECIAL_POINTS_HOME } from "./SPECIAL_POINTS_HOME";
+import GlobeModal from "../../components/Globe/GlobeModal";
+import ContactButton from "../../components/Buttons/ContactButton";
+import ContactModalContent from "../../components/Buttons/ContactModalContent";
+import ContactModal from "../../components/Buttons/ContactModal";
+import GlobeModalContent from "../../components/Globe/GlobeModalContent";
 
 const Home = () => {
     const [dotData, setDotData] = useState(null);
@@ -19,34 +19,51 @@ const Home = () => {
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center text-center animate-fade animate-duration-500 animate-ease-linear '>
-                <div className='flex flex-col mx-4'>
-                    <h1 className="font-extrabold text-5xl sm:text-7xl md:text-8xl transition-all duration-300">Jonathan</h1>
-                    <h2 className="font-bold text-4xl text-center sm:text-6xl md:text-7xl pb-8 transition-all duration-300">Aragón</h2>
-                    <ContactButton onOpen={() => setContactOpen(true)} />
-                    <div className='flex flex-col md:flex-row gap-4 py-4'>
-                        <article className='flex flex-col p-8  min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-amber-300/10 hover:bg-amber-300/15 rounded-lg'>
-                            <h1 className='font-light text-3xl text-amber-300'> <span className='animate-pulse text-amber-300'>{">"}</span> Programador jr</h1>
-                            <p className='font-extralight text-lg text-zinc-300'>
-                                Tengo experiencia en programación y ciberseguridad,
-                                con habilidades en resolución de problemas y aprendizaje rápido.
-                                Mi enfoque es ofrecer soluciones eficientes y adaptadas a los desafíos tecnológicos.
+            <div className="flex flex-col items-center justify-center text-center animate-fade animate-duration-500 animate-ease-linear ">
+                <div className="flex flex-col mx-4 pb-6">
+                    <h1 className="font-extrabold text-5xl sm:text-7xl md:text-8xl transition-all duration-300">
+                        Jonathan
+                    </h1>
+                    <h2 className="font-bold text-4xl text-center sm:text-6xl md:text-7xl pb-8 transition-all duration-300">
+                        Aragón
+                    </h2>
+                    <div className="flex flex-col md:flex-row gap-4 py-4  text-primary-content">
+                        <article className="flex flex-col p-8  min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-cyan-800/70 hover:bg-cyan-800/50 rounded-lg">
+                            <h1 className="font-bold text-3xl">
+                                {" "}
+                                <span className="animate-pulse text-emerald-300">
+                                    {">"}
+                                </span>{" "}
+                                Programador jr
+                            </h1>
+                            <p className="font-medium text-lg">
+                                Tengo experiencia en programación y ciberseguridad, con
+                                habilidades en resolución de problemas y aprendizaje rápido. Mi
+                                enfoque es ofrecer soluciones eficientes y adaptadas a los
+                                desafíos tecnológicos.
                             </p>
                         </article>
-                        <article className='flex flex-col items-center p-8 min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-emerald-900/15 hover:bg-emerald-900/20 rounded-xl '>
-                            <h1 className='font-light text-2xl text-green-300'>Recursos que recomiendo</h1>
-                            <p className='font-extralight text-sm text-zinc-300'>
-                                Explora los cursos y recursos que he encontrado útiles en mi camino de aprendizaje.
-                                <span className="text-emerald-200"> Haz clic en los puntos del mapa para obtener más información sobre cada uno de ellos.</span>
+                        <article className="flex flex-col items-center p-8 min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-emerald-900/50 hover:bg-emerald-900/30 rounded-xl ">
+                            <h1 className="font-bold text-2xl text-green-300">
+                                Recursos que recomiendo
+                            </h1>
+                            <p className="font-medium text-lg">
+                                Explora los cursos y recursos que he encontrado útiles en mi
+                                camino de aprendizaje.
+                                <span className="text-green-300 font-medium">
+                                    {" "}
+                                    Haz clic en los puntos del mapa para obtener más información
+                                    sobre cada uno de ellos.
+                                </span>
                             </p>
                         </article>
                     </div>
                 </div>
-
+                <ContactButton onOpen={() => setContactOpen(true)} />
             </div>
             <Globe
-                mainSphereColor={0xA4F76B}
-                interactionSphereColor={0x6FF749}
+                mainSphereColor={0x155e75}
+                interactionSphereColor={0x10b981}
                 dotsData={SPECIAL_POINTS_HOME}
                 onDotClick={setDotData}
                 zoomOutTrigger={zoomOutTrigger}
@@ -63,7 +80,7 @@ const Home = () => {
                 modalContent={<GlobeModalContent dotData={dotData} />}
             />
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

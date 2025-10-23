@@ -1,6 +1,6 @@
 export const SPECIAL_POINTS_HOME = [
   {
-    lat: 31.84712, lon: -51.64860, color: 0xFFB3BA, size: 4,
+    lat: 31.84712, lon: -51.64860, color: 0x881337, size: 4,
     label: 'Conceptos básicos de redes (Cisco)',
     link: 'https://www.netacad.com/es/courses/networking-basics?courseLang=es-XL',
     content: `

@@ -55,7 +55,7 @@ const AboutMe = () => {
                 </PageButton>
             </div>
             <div className="flex flex-col items-center justify-center text-center my-4 space-y-2">
-                <span className="py-2 text-amber-300">{page + 1} / {totalPages}</span>
+                <span className="py-2">{page + 1} / {totalPages}</span>
                 <CarrouselCard
                     paginated={paginated}
                     page={page}
@@ -66,7 +66,7 @@ const AboutMe = () => {
                 />
             </div>
             <div className="flex flex-col gap-4 pb-4">
-                <p className="font-extralight text-lg text-emerald-300/80 max-w-md">¿Interesado en trabajar conmigo?</p>
+                <p className="font-medium text-lg max-w-md">¿Interesado en trabajar conmigo?</p>
                 <ContactButton onOpen={() => setContactOpen(true)} />
                 <ContactModal
                     open={contactOpen}
