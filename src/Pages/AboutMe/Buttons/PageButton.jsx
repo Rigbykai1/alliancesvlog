@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PageButton = ({ onClick, disabled, children }) => (
     <button
         className="flex items-center px-4 border border-green-300 bg-green-300/20 opacity-70 text-green-300 rounded-lg

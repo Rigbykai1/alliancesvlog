@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col">
+      <div className="flex flex-col h-screen justify-between min-h-screen bg-base-200 text-base-content transition-colors duration-500">
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +21,7 @@ function App() {
           <Route path="/CyberVlog" element={<CyberVlog />} />
           <Route path="/CyberVlog/:id" element={<PostDetail />} />
         </Routes>
-        <Footer/>
+        <Footer />
         <ThemeSwitcher />
       </div>
     </BrowserRouter>

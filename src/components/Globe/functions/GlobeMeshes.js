@@ -59,8 +59,6 @@ export const createMainSphere = (radius, color) => {
         new THREE.SphereGeometry(radius * 0.8, 64, 64),
         new THREE.MeshStandardMaterial({
             color: color,
-            roughness: 1,
-            metalness: 0.5,
             opacity: 1,
             transparent: true,
         })

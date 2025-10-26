@@ -1,5 +1,6 @@
-import React from "react";
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
+import { getActiveTheme } from "../Utils/getActiveTheme";
+import { useEffect, useState } from "react";
 
 const CarrouselCard = ({
   paginated,
@@ -9,6 +10,15 @@ const CarrouselCard = ({
   handleNext,
   activeTab,
 }) => {
+  const initialTheme = getActiveTheme();
+  const [theme, setTheme] = useState(initialTheme);
+  
+  useEffect(() => {
+    const currentTheme = getActiveTheme();
+    setTheme(currentTheme);
+    console.log("Current theme:", currentTheme);
+  }, [page, activeTab]);
+
   return (
     <>
       <article
@@ -16,7 +26,7 @@ const CarrouselCard = ({
             sm:justify-between sm:max-w-min sm:min-w-xl transition-all duration-300"
       >
         <button
-          className="hidden h-full items-center rounded-lg px-4 border border-green-300 bg-green-300/20 opacity-70 text-green-300
+          className="hidden h-full items-center rounded-lg px-4 border border-stone-500 bg-cyan-500/20 opacity-70 text-stone-900
                     sm:flex  
                     hover:cursor-pointer hover:opacity-100  
                     disabled:border-transparent disabled:bg-stone-700 disabled:opacity-50 disabled:cursor-default "

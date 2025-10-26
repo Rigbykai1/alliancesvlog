@@ -1,0 +1,40 @@
+import { useEffect, useState } from "react";
+import { getActiveTheme } from "../components/Utils/getActiveTheme";
+
+export default function useActiveTheme() {
+  const [theme, setTheme] = useState(() => getActiveTheme());
+
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key === "theme") {
+        setTheme(e.newValue === "dark" ? "dark" : "light");
+      }
+    };
+
+    const onCustom = (e) => {
+      const val = e?.detail;
+      if (val === "dark" || val === "light") setTheme(val);
+    };
+
+    let bc = null;
+    try {
+      bc = new BroadcastChannel("theme");
+      bc.onmessage = (m) => {
+        if (m.data === "dark" || m.data === "light") setTheme(m.data);
+      };
+    } catch (err) {
+      console.error("BroadcastChannel error:", err);
+    }
+
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("theme-change", onCustom);
+
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("theme-change", onCustom);
+      if (bc) bc.close();
+    };
+  }, []);
+
+  return theme;
+}

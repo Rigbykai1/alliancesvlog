@@ -4,14 +4,15 @@
 
 
 
+
 @plugin "daisyui/theme" {
   name: "light";
   default: false;
   prefersdark: false;
   color-scheme: "light";
-  --color-base-100: oklch(92% 0.084 155.995);
-  --color-base-200: oklch(98% 0.001 106.423);
-  --color-base-300: oklch(96% 0.044 156.743);
+  --color-base-100: oklch(98% 0.003 247.858);
+  --color-base-200: oklch(96% 0.007 247.896);
+  --color-base-300: oklch(92% 0.013 255.508);
   --color-base-content: oklch(38% 0.063 188.416);
   --color-primary: oklch(27% 0.046 192.524);
   --color-primary-content: oklch(100% 0 0);
@@ -38,6 +39,8 @@
   --depth: 1;
   --noise: 1;
 }
+
+
 
 @plugin "daisyui/theme" {
   name: "dark";
@@ -74,9 +77,10 @@
   --noise: 0;
 }
 
+
 body {
-  @apply bg-base-100;
+  @apply bg-base-200;
 }
 html {
-  @apply bg-base-100
+  @apply bg-base-200
 }

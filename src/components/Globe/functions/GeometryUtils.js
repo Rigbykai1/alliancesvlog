@@ -4,7 +4,7 @@ import { DEG2RAD } from '../Constants/GlobeSettings';
 export function dotRadius() {
     const w = window.innerWidth;
     const h = window.innerHeight;
-    return Math.min(w, h) * (w < 678 ? 0.25 : 0.40);
+    return Math.min(w, h) * (w < 678 ? 0.25 : 0.30);
 }
 
 export function createVectorFromLatLon(lat, lon, radius) {

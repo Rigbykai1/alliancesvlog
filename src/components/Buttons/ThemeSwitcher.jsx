@@ -17,6 +17,18 @@ const ThemeSwitcher = () => {
         try {
             localStorage.setItem("theme", theme);
         } catch (e) {}
+
+        // emitir evento para la misma pestaña
+        try {
+            window.dispatchEvent(new CustomEvent("theme-change", { detail: theme }));
+        } catch (e) {}
+
+        // BroadcastChannel para otras pestañas (si está disponible)
+        try {
+            const bc = new BroadcastChannel("theme");
+            bc.postMessage(theme);
+            bc.close();
+        } catch (e) {}
     }, [theme]);
 
     const toggleTheme = () => {
