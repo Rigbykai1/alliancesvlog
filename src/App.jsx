@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import PostDetail from "./Pages/CyberVlog/PostDetails";
+import PostsRender from "./Pages/CyberVlog/PostsRender";
 import Proyectos from "./Pages/Proyectos/Proyectos";
 import CyberVlog from "./Pages/CyberVlog/CyberVlog";
 import AboutMe from "./Pages/AboutMe/AboutMe";
@@ -19,7 +19,7 @@ function App() {
           <Route path="/SobreMi" element={<AboutMe />} />
           <Route path="/proyectos" element={<Proyectos />} />
           <Route path="/CyberVlog" element={<CyberVlog />} />
-          <Route path="/CyberVlog/:id" element={<PostDetail />} />
+          <Route path="/CyberVlog/:id" element={<PostsRender />} />
         </Routes>
         <Footer />
         <ThemeSwitcher />

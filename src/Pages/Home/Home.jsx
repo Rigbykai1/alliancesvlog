@@ -27,11 +27,11 @@ const Home = () => {
                     <h2 className="font-bold text-4xl text-center sm:text-6xl md:text-7xl pb-8 transition-all duration-300">
                         Aragón
                     </h2>
-                    <div className="flex flex-col md:flex-row gap-4 py-4  text-primary-content">
-                        <article className="flex flex-col p-8  min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-cyan-800/70 hover:bg-cyan-800/50 rounded-lg">
-                            <h1 className="font-bold text-3xl">
+                    <div className="flex flex-col md:flex-row gap-4 py-4">
+                        <article className="flex flex-col p-8  min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-info/60 hover:bg-info/40 rounded-lg">
+                            <h1 className="font-bold text-3xl text-info-content">
                                 {" "}
-                                <span className="animate-pulse text-emerald-300">
+                                <span className="animate-pulse">
                                     {">"}
                                 </span>{" "}
                                 Programador jr
@@ -43,14 +43,14 @@ const Home = () => {
                                 desafíos tecnológicos.
                             </p>
                         </article>
-                        <article className="flex flex-col items-center p-8 min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-emerald-900/50 hover:bg-emerald-900/30 rounded-xl ">
-                            <h1 className="font-bold text-2xl text-green-300">
+                        <article className="flex flex-col items-center p-8 min-h-56 max-h-80 justify-center max-w-md min-w-80 bg-accent/50 hover:bg-accent/70 rounded-xl ">
+                            <h1 className="font-bold text-2xl text-accent-content">
                                 Recursos que recomiendo
                             </h1>
                             <p className="font-medium text-lg">
                                 Explora los cursos y recursos que he encontrado útiles en mi
                                 camino de aprendizaje.
-                                <span className="text-green-300 font-medium">
+                                <span className="text-accent-content font-bold">
                                     {" "}
                                     Haz clic en los puntos del mapa para obtener más información
                                     sobre cada uno de ellos.

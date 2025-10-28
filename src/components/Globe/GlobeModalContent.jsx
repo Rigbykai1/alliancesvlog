@@ -8,17 +8,17 @@ const GlobeModalContent = ({ dotData }) => {
         <>
             <h3 className="font-bold text-lg">{dotData.label}</h3>
             <p className="py-4">{dotData.content}</p>
-            <a className='btn btn-outline btn-dash btn-warning mt-4' href={dotData.link} target='_blank' rel="noopener noreferrer">
+            <a className='btn btn-outline btn-dash  mt-4' href={dotData.link} target='_blank' rel="noopener noreferrer">
                 Link del curso
             </a>
             <div className="flex justify-center min-h-40 mt-4">
                 {!imgLoaded && (
-                    <div className="animate-pulse bg-stone-700 rounded-lg shadow-md max-w-xs w-full" />
+                    <div className="animate-pulse bg-stone-700 rounded-2xl shadow-md max-w-xs w-full" />
                 )}
                 <img
                     src={screenshotUrl}
                     alt={`Vista previa de ${dotData.label}`}
-                    className={`rounded-lg shadow-md max-w-xs w-full transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    className={`rounded-2xl shadow-md max-w-xs w-full transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
                     onLoad={() => setImgLoaded(true)}
                     style={{ position: imgLoaded ? 'static' : 'absolute' }}
                 />

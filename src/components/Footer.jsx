@@ -1,12 +1,15 @@
 import ghUrl from "./Utils/ghrul";
+import useActiveTheme from "../Hooks/UseActiveTheme";
+
 const Footer = () => {
+  const activeTheme = useActiveTheme();
   return (
     <footer className="footer footer-horizontal footer-center bg-base-300 p-8 bottom-0">
       <aside>
         <img
           src={ghUrl("/src/Images/Logo.PNG")}
           alt="Logo de Alliances tech"
-          className="size-24"
+          className={'size-24 ' + (activeTheme === 'light' ? 'invert' : '')}
         />
         <p className="font-bold">
           Alliances tech
