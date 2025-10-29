@@ -59,7 +59,7 @@ export const createMainSphere = (radius, color) => {
         new THREE.SphereGeometry(radius * 0.8, 64, 64),
         new THREE.MeshStandardMaterial({
             color: color,
-            opacity: 1,
+            opacity: 0.5,
             transparent: true,
         })
     );
@@ -71,7 +71,7 @@ export const createInteractionSphere = (radius, color) => {
         new THREE.SphereGeometry(radius, 64, 64),
         new THREE.MeshBasicMaterial({
             color: color,
-            opacity: 0.3,
+            opacity: 0.2,
             transparent: true
         })
     );
