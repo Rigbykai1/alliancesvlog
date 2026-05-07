@@ -54,9 +54,16 @@ export const STUDY_HISTORY = [
         year: 2023
     },
     {
-        title: 'Udemy',
-        title1: 'Ciberseguridad defensiva: Hacking Ético',
-        description: 'Curso práctico sobre hacking ético, técnicas de penetración y defensa en sistemas informáticos. Aprendizaje de herramientas y metodologías utilizadas por un profesional como lo es Santiago Hernández.',
-        year: 2025
+    title: 'Udemy',
+    title1: 'Curso completo de Hacking Ético y Ciberseguridad',
+    description: 'Formación práctica en ciberseguridad ofensiva enfocada en pentesting, análisis de vulnerabilidades, explotación de sistemas y seguridad web utilizando herramientas como Kali Linux, Nmap, Wireshark, Metasploit, Burp Suite y Nessus. Curso impartido por Santiago Hernández.',
+    year: 2025
+    },
+    {
+    title: 'Udemy',
+    title1: 'Curso Completo de Ciberseguridad Defensiva',
+    description: 'Capacitación en ciberseguridad defensiva orientada a la protección de infraestructuras empresariales, hardening de sistemas, seguridad de redes, criptografía, gestión de vulnerabilidades y monitoreo de incidentes utilizando herramientas como Splunk, Security Onion, PfSense y Kali Purple. Curso impartido por Santiago Hernández.',
+    year: 2025
     }
+    
 ];
